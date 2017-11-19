@@ -35,7 +35,6 @@ public class game {
         for (DefaultEdge e : E)
         {
                 System.out.printf("%18s - %18s \n", G.getEdgeSource(e),G.getEdgeTarget(e));
-
         }
     }
 
@@ -62,7 +61,6 @@ public class game {
     public void genChange(){
         change = new String[(n*n)];
         for(int k=0;k<n*n;k++) {
-
             int[][] table = new int[n ][n ];
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
@@ -82,12 +80,6 @@ public class game {
                     change[k] = change[k].concat(Integer.toString(table[i][j]));
                 }
             }
-//            System.out.printf("%d %d ",ii,jj);
-//            System.out.print(change[k]);
-//            System.out.print("/");
-//            System.out.print(initialState);
-//            System.out.print("      ");
-//            System.out.println(changeState(initialState,change[k]));
         }
     }
     public String changeState(String state,String change){
@@ -117,11 +109,7 @@ public class game {
             for (int i = 0; i < n * n; i++) {
                 String newState = changeState(currentState, change[i]);
                 if (HS.contains(newState)) {
-
                 } else {
-//                    System.out.print(currentState);
-//                    System.out.print("      ");
-//                    System.out.println(newState);
                     HS.add(newState);
                     allTable.add(newState);
                     G.addVertex(newState);
@@ -134,7 +122,7 @@ public class game {
                 }
             }
         }
-        System.out.print(allTable.size());
+        System.out.print(HS.size());
 
     }
 }
