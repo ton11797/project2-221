@@ -9,7 +9,6 @@ import org.jgrapht.graph.SimpleGraph;
 import java.util.*;
 
 public class game {
-    private Long currentNode;
     private Graph<String, DefaultEdge> G;
     private SimpleGraph<String, DefaultEdge> SG;
     private DijkstraShortestPath<String, DefaultEdge> DSP;
@@ -21,7 +20,6 @@ public class game {
     game(int N,String I){
         n=N;
         initialState=I;
-        currentNode=0L;
         HS = new HashSet<>();
         SG = new SimpleGraph<String, DefaultEdge>(DefaultEdge.class);
         G  = (Graph<String, DefaultEdge>)SG;
@@ -53,12 +51,12 @@ public class game {
                 System.out.printf("\nNo path from %s to %s \n", initialState, ans);
         }
     }
-    public void ans(){
+    private void ans(){
         char[] a = new char[n*n];
         for(int i=0;i<n*n;i++)a[i]='0';
         ans = new String(a);
     }
-    public void genChange(){
+    private void genChange(){
         change = new String[(n*n)];
         for(int k=0;k<n*n;k++) {
             int[][] table = new int[n ][n ];
@@ -82,7 +80,7 @@ public class game {
             }
         }
     }
-    public String changeState(String state,String change){
+    private String changeState(String state,String change){
         char[] stateArray =state.toCharArray();
         char[] changeArray =change.toCharArray();
         String newState;
@@ -98,7 +96,7 @@ public class game {
         newState = new String(stateArray);
         return newState;
     }
-    public void createGraph(){
+    private void createGraph(){
         HS.add(initialState);
         ArrayList<String> allTable = new ArrayList<>();
         allTable.add(initialState);
@@ -123,6 +121,5 @@ public class game {
             }
         }
         System.out.print(HS.size());
-
     }
 }
